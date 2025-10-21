@@ -1,0 +1,76 @@
+{
+	"name": "df_csv05_con_csv06",
+	"properties": {
+		"folder": {
+			"name": "Bronze"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_llamadas_entel_csv05",
+						"type": "DatasetReference"
+					},
+					"name": "csv05"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_llamadas_entel_csv06",
+						"type": "DatasetReference"
+					},
+					"name": "csv06"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_llamadas_entel_csv05y06",
+						"type": "DatasetReference"
+					},
+					"name": "unioncsvs05y06"
+				}
+			],
+			"transformations": [
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {\"FECHA_INICIO\";\"FECHA_FIN\";\"NUMERO\";\"IMEI\";\"RBS_UTILIZADA\";\"CELDA\";\"LATITUD LONGITUD\";\"SUBIDOS\";\"DESCARGADOS\";\"TOTAL\"} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> csv05",
+				"source(output(",
+				"          {\"FECHA_INICIO\";\"FECHA_FIN\";\"NUMERO\";\"IMEI\";\"RBS_UTILIZADA\";\"CELDA\";\"LATITUD LONGITUD\";\"SUBIDOS\";\"DESCARGADOS\";\"TOTAL\"} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> csv06",
+				"csv05, csv06 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SERVICIO as string,",
+				"          REGISTRO as string,",
+				"          NUMERO_A as string,",
+				"          IMEI_A as string,",
+				"          {RBS UTILIZADA_A} as string,",
+				"          CELDA_A as string,",
+				"          LATITUD_LONGITUD_A as string,",
+				"          NUMERO_B as string,",
+				"          IMEI_B as string,",
+				"          RBS_UTILIZADA_B as string,",
+				"          CELDA_B as string,",
+				"          LATITUD_LONGITUD_B as string,",
+				"          FECHA as string,",
+				"          DURACION as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> unioncsvs05y06"
+			]
+		}
+	}
+}

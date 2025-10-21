@@ -1,0 +1,9 @@
+{
+	"name": "pipeline_cargar_datos",
+	"properties": {
+		"folder": {
+			"name": "Bronze"
+		},
+		"annotations": []
+	}
+}

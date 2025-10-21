@@ -15,7 +15,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_tabla_llamadas_entel",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
@@ -36,7 +44,49 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          servicio as string,",
+				"          registro as string,",
+				"          numero_a as string,",
+				"          imei_a as string,",
+				"          rbs_utilizada_a as string,",
+				"          celda_a as string,",
+				"          latitud_longitud_a as string,",
+				"          numero_b as string,",
+				"          imei_b as string,",
+				"          rbs_utilizada_b as string,",
+				"          celda_b as string,",
+				"          latitud_longitud_b as string,",
+				"          fecha as string,",
+				"          duracion as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          servicio = SERVICIO,",
+				"          registro = REGISTRO,",
+				"          numero_a = NUMERO_A,",
+				"          imei_a = IMEI_A,",
+				"          rbs_utilizada_a = {RBS UTILIZADA_A},",
+				"          celda_a = CELDA_A,",
+				"          latitud_longitud_a = LATITUD_LONGITUD_A,",
+				"          numero_b = NUMERO_B,",
+				"          imei_b = IMEI_B,",
+				"          rbs_utilizada_b = RBS_UTILIZADA_B,",
+				"          celda_b = CELDA_B,",
+				"          latitud_longitud_b = LATITUD_LONGITUD_B,",
+				"          fecha = FECHA,",
+				"          duracion = DURACION",
+				"     )) ~> sink1"
 			]
 		}
 	}

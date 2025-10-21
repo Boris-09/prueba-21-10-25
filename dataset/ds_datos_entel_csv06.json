@@ -1,5 +1,5 @@
 {
-	"name": "ds_llamadas_entel_csv06",
+	"name": "ds_datos_entel_csv06",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_sa_datos_entel",

@@ -1,9 +1,12 @@
 {
-	"name": "ds_llamadas_entel_csv05y06",
+	"name": "ds_llamadas_entel_union_csv05y06",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_sa_datos_entel",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Bronze"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

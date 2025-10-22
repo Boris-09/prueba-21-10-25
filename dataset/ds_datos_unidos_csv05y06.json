@@ -15,7 +15,7 @@
 				"type": "AzureBlobStorageLocation",
 				"container": "raw-entel"
 			},
-			"columnDelimiter": ";",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""

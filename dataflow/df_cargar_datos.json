@@ -15,15 +15,7 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "ds_tabla_datos_entel",
-						"type": "DatasetReference"
-					},
-					"name": "sink1"
-				}
-			],
+			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
@@ -44,39 +36,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
-				"          fecha_inicio as string,",
-				"          fecha_fin as string,",
-				"          numero as string,",
-				"          imei as string,",
-				"          rbs_utilizada as string,",
-				"          celda as string,",
-				"          latitud_longitud as string,",
-				"          subidos as string,",
-				"          descargados as string,",
-				"          total as string",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          fecha_inicio = FECHA,",
-				"          fecha_fin = FECHA,",
-				"          numero = NUMERO_A,",
-				"          imei = IMEI_A,",
-				"          rbs_utilizada = {RBS UTILIZADA_A},",
-				"          celda = CELDA_A,",
-				"          latitud_longitud = LATITUD_LONGITUD_A,",
-				"          subidos = SERVICIO,",
-				"          descargados = REGISTRO,",
-				"          total = REGISTRO",
-				"     )) ~> sink1"
+				"     ignoreNoFilesFound: false) ~> source1"
 			]
 		}
 	}

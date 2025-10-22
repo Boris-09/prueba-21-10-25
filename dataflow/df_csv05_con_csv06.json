@@ -25,15 +25,15 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_datos_entel_union_csv05y06",
+						"referenceName": "ds_datos_unidos_csv05y06",
 						"type": "DatasetReference"
 					},
-					"name": "unioncsvs05y06"
+					"name": "sink1"
 				}
 			],
 			"transformations": [
 				{
-					"name": "union1"
+					"name": "unionfinal"
 				}
 			],
 			"scriptLines": [
@@ -49,8 +49,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> csv06",
-				"csv05, csv06 union(byName: true)~> union1",
-				"union1 sink(allowSchemaDrift: true,",
+				"csv05, csv06 union(byName: true)~> unionfinal",
+				"unionfinal sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          SERVICIO as string,",
@@ -69,7 +69,7 @@
 				"          DURACION as string",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> unioncsvs05y06"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}

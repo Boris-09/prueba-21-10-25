@@ -8,10 +8,6 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "ds_datos_entel_union_csv05y06",
-						"type": "DatasetReference"
-					},
 					"name": "source1"
 				}
 			],
@@ -26,25 +22,8 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          SERVICIO as string,",
-				"          REGISTRO as string,",
-				"          NUMERO_A as string,",
-				"          IMEI_A as string,",
-				"          {RBS UTILIZADA_A} as string,",
-				"          CELDA_A as string,",
-				"          LATITUD_LONGITUD_A as string,",
-				"          NUMERO_B as string,",
-				"          IMEI_B as string,",
-				"          RBS_UTILIZADA_B as string,",
-				"          CELDA_B as string,",
-				"          LATITUD_LONGITUD_B as string,",
-				"          FECHA as string,",
-				"          DURACION as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
